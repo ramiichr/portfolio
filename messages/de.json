@@ -1,0 +1,92 @@
+{
+  "navigation": {
+    "home": "Startseite",
+    "about": "Über mich",
+    "projects": "Projekte",
+    "skills": "Fähigkeiten",
+    "contact": "Kontakt"
+  },
+  "hero": {
+    "greeting": "Hallo, ich bin",
+    "name": "Rami Cheikh Rouhou",
+    "title": "Full Stack Entwickler",
+    "subtitle": "Digitale Erlebnisse mit Leidenschaft und Präzision gestalten",
+    "cta": "Meine Arbeit ansehen",
+    "downloadCV": "Lebenslauf herunterladen"
+  },
+  "about": {
+    "title": "Über mich",
+    "subtitle": "Lernen Sie mich besser kennen",
+    "description": "Ich bin ein leidenschaftlicher Full-Stack-Entwickler mit über 5 Jahren Erfahrung in der Erstellung moderner Webanwendungen. Ich liebe es, komplexe Probleme in einfache, schöne und intuitive Lösungen zu verwandeln.",
+    "educationTitle": "Ausbildung",
+    "experienceTitle": "Berufserfahrung",
+    "education": {
+      "degree1": "Master in Informatik",
+      "school1": "Technische Universität",
+      "period1": "2018 - 2020",
+      "degree2": "Bachelor in Software Engineering",
+      "school2": "Staatliche Universität",
+      "period2": "2014 - 2018"
+    },
+    "experience": {
+      "position1": "Senior Full Stack Entwickler",
+      "company1": "Tech Company Inc.",
+      "period1": "2021 - Heute",
+      "position2": "Full Stack Entwickler",
+      "company2": "StartUp Labs",
+      "period2": "2018 - 2021"
+    }
+  },
+  "skills": {
+    "title": "Meine Fähigkeiten",
+    "subtitle": "Technologien, mit denen ich arbeite",
+    "frontend": "Frontend",
+    "backend": "Backend",
+    "tools": "Tools & Sonstiges"
+  },
+  "projects": {
+    "title": "Meine Projekte",
+    "subtitle": "Aktuelle Arbeiten",
+    "viewProject": "Projekt ansehen",
+    "viewCode": "Code ansehen",
+    "all": "Alle",
+    "web": "Web",
+    "mobile": "Mobil",
+    "design": "Design"
+  },
+  "contact": {
+    "title": "Kontakt aufnehmen",
+    "subtitle": "Lassen Sie uns zusammenarbeiten",
+    "description": "Ich bin immer offen für Gespräche über neue Projekte, kreative Ideen oder Möglichkeiten, Teil Ihrer Vision zu werden.",
+    "form": {
+      "name": "Ihr Name",
+      "email": "Ihre E-Mail",
+      "message": "Ihre Nachricht",
+      "send": "Nachricht senden",
+      "sending": "Wird gesendet...",
+      "success": "Nachricht erfolgreich gesendet!",
+      "error": "Etwas ist schief gelaufen. Bitte versuchen Sie es erneut."
+    },
+    "info": {
+      "email": "E-Mail",
+      "location": "Standort",
+      "availability": "Verfügbarkeit"
+    }
+  },
+  "footer": {
+    "rights": "Alle Rechte vorbehalten.",
+    "madeWith": "Gemacht mit",
+    "by": "von"
+  },
+  "theme": {
+    "light": "Hell",
+    "dark": "Dunkel",
+    "system": "System"
+  },
+  "language": {
+    "select": "Sprache wählen",
+    "en": "Englisch",
+    "fr": "Französisch",
+    "de": "Deutsch"
+  }
+}

@@ -1,0 +1,92 @@
+{
+  "navigation": {
+    "home": "Accueil",
+    "about": "À propos",
+    "projects": "Projets",
+    "skills": "Compétences",
+    "contact": "Contact"
+  },
+  "hero": {
+    "greeting": "Bonjour, je suis",
+    "name": "Rami Cheikh Rouhou",
+    "title": "Développeur Full Stack",
+    "subtitle": "Créer des expériences numériques avec passion et précision",
+    "cta": "Voir mon travail",
+    "downloadCV": "Télécharger CV"
+  },
+  "about": {
+    "title": "À propos de moi",
+    "subtitle": "Apprenez à mieux me connaître",
+    "description": "Je suis un développeur full-stack passionné avec plus de 5 ans d'expérience dans la création d'applications web modernes. J'aime transformer des problèmes complexes en solutions simples, belles et intuitives.",
+    "educationTitle": "Formation",
+    "experienceTitle": "Expérience",
+    "education": {
+      "degree1": "Master en Informatique",
+      "school1": "Université de Technologie",
+      "period1": "2018 - 2020",
+      "degree2": "Licence en Génie Logiciel",
+      "school2": "Université d'État",
+      "period2": "2014 - 2018"
+    },
+    "experience": {
+      "position1": "Développeur Full Stack Senior",
+      "company1": "Tech Company Inc.",
+      "period1": "2021 - Présent",
+      "position2": "Développeur Full Stack",
+      "company2": "StartUp Labs",
+      "period2": "2018 - 2021"
+    }
+  },
+  "skills": {
+    "title": "Mes compétences",
+    "subtitle": "Technologies avec lesquelles je travaille",
+    "frontend": "Frontend",
+    "backend": "Backend",
+    "tools": "Outils & Autres"
+  },
+  "projects": {
+    "title": "Mes projets",
+    "subtitle": "Travaux récents que j'ai réalisés",
+    "viewProject": "Voir le projet",
+    "viewCode": "Voir le code",
+    "all": "Tous",
+    "web": "Web",
+    "mobile": "Mobile",
+    "design": "Design"
+  },
+  "contact": {
+    "title": "Me contacter",
+    "subtitle": "Travaillons ensemble",
+    "description": "Je suis toujours ouvert à discuter de nouveaux projets, d'idées créatives ou d'opportunités pour faire partie de votre vision.",
+    "form": {
+      "name": "Votre nom",
+      "email": "Votre email",
+      "message": "Votre message",
+      "send": "Envoyer le message",
+      "sending": "Envoi en cours...",
+      "success": "Message envoyé avec succès!",
+      "error": "Une erreur s'est produite. Veuillez réessayer."
+    },
+    "info": {
+      "email": "Email",
+      "location": "Localisation",
+      "availability": "Disponibilité"
+    }
+  },
+  "footer": {
+    "rights": "Tous droits réservés.",
+    "madeWith": "Fait avec",
+    "by": "par"
+  },
+  "theme": {
+    "light": "Clair",
+    "dark": "Sombre",
+    "system": "Système"
+  },
+  "language": {
+    "select": "Choisir la langue",
+    "en": "Anglais",
+    "fr": "Français",
+    "de": "Allemand"
+  }
+}
