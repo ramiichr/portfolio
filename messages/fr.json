@@ -20,29 +20,40 @@
     "description": "Je suis un développeur full-stack passionné avec plus de 5 ans d'expérience dans la création d'applications web modernes. J'aime transformer des problèmes complexes en solutions simples, belles et intuitives.",
     "educationTitle": "Formation",
     "experienceTitle": "Expérience",
-    "education": {
-      "degree1": "Master en Informatique",
-      "school1": "Université de Technologie",
-      "period1": "2018 - 2020",
-      "degree2": "Licence en Génie Logiciel",
-      "school2": "Université d'État",
-      "period2": "2014 - 2018"
-    },
-    "experience": {
-      "position1": "Développeur Full Stack Senior",
-      "company1": "Tech Company Inc.",
-      "period1": "2021 - Présent",
-      "position2": "Développeur Full Stack",
-      "company2": "StartUp Labs",
-      "period2": "2018 - 2021"
-    }
+    "education": [
+      {
+        "degree": "Master en Informatique",
+        "school": "Université de Technologie",
+        "period": "2018 - 2020"
+      },
+      {
+        "degree": "Licence en Génie Logiciel",
+        "school": "Université d'État",
+        "period": "2014 - 2018"
+      }
+    ],
+    "experience": [
+      {
+        "position": "Développeur Full Stack Senior",
+        "company": "Tech Company Inc.",
+        "period": "2021 - Présent"
+      },
+      {
+        "position": "Développeur Full Stack",
+        "company": "StartUp Labs",
+        "period": "2018 - 2021"
+      }
+    ]
   },
   "skills": {
     "title": "Mes compétences",
     "subtitle": "Technologies avec lesquelles je travaille",
     "frontend": "Frontend",
+    "frontendSubtitle": "Interfaces utilisateur & expériences",
     "backend": "Backend",
-    "tools": "Outils & Autres"
+    "backendSubtitle": "Technologies serveur & base de données",
+    "tools": "Outils & Autres",
+    "toolsSubtitle": "Développement & productivité"
   },
   "projects": {
     "title": "Mes projets",

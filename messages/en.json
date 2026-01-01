@@ -20,29 +20,40 @@
     "description": "I'm a passionate full-stack developer with over 5 years of experience building modern web applications. I love turning complex problems into simple, beautiful, and intuitive solutions.",
     "educationTitle": "Education",
     "experienceTitle": "Experience",
-    "education": {
-      "degree1": "Master's in Computer Science",
-      "school1": "University of Technology",
-      "period1": "2018 - 2020",
-      "degree2": "Bachelor's in Software Engineering",
-      "school2": "State University",
-      "period2": "2014 - 2018"
-    },
-    "experience": {
-      "position1": "Senior Full Stack Developer",
-      "company1": "Tech Company Inc.",
-      "period1": "2021 - Present",
-      "position2": "Full Stack Developer",
-      "company2": "StartUp Labs",
-      "period2": "2018 - 2021"
-    }
+    "education": [
+      {
+        "degree": "Master's in Computer Science",
+        "school": "University of Technology",
+        "period": "2018 - 2020"
+      },
+      {
+        "degree": "Bachelor's in Software Engineering",
+        "school": "State University",
+        "period": "2014 - 2018"
+      }
+    ],
+    "experience": [
+      {
+        "position": "Senior Full Stack Developer",
+        "company": "Tech Company Inc.",
+        "period": "2021 - Present"
+      },
+      {
+        "position": "Full Stack Developer",
+        "company": "StartUp Labs",
+        "period": "2018 - 2021"
+      }
+    ]
   },
   "skills": {
     "title": "My Skills",
     "subtitle": "Technologies I work with",
     "frontend": "Frontend",
+    "frontendSubtitle": "User interfaces & experiences",
     "backend": "Backend",
-    "tools": "Tools & Others"
+    "backendSubtitle": "Server & database technologies",
+    "tools": "Tools & Others",
+    "toolsSubtitle": "Development & productivity"
   },
   "projects": {
     "title": "My Projects",
