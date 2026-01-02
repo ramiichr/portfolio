@@ -10,6 +10,7 @@ const locales = [
   { code: "en", name: "English", flag: "🇺🇸" },
   { code: "fr", name: "Français", flag: "🇫🇷" },
   { code: "de", name: "Deutsch", flag: "🇩🇪" },
+  { code: "ar", name: "العربية", flag: "🇸🇦" },
 ];
 
 export function LanguageSwitcher() {
@@ -22,7 +23,9 @@ export function LanguageSwitcher() {
   const currentLocale = locales.find((l) => l.code === locale) || locales[0];
 
   const handleLocaleChange = (newLocale: string) => {
-    router.replace(pathname, { locale: newLocale as "en" | "fr" | "de" });
+    router.replace(pathname, {
+      locale: newLocale as "en" | "fr" | "de" | "ar",
+    });
     setIsOpen(false);
   };
 
