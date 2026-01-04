@@ -37,11 +37,13 @@ export function AboutSection() {
       degree: string;
       school: string;
       period: string;
+      location?: string;
     }>
   ).map((edu) => ({
     title: edu.degree,
     subtitle: edu.school,
     period: edu.period,
+    location: edu.location,
   }));
 
   // Transform experience data for TimelineCard
@@ -50,11 +52,13 @@ export function AboutSection() {
       position: string;
       company: string;
       period: string;
+      location?: string;
     }>
   ).map((exp) => ({
     title: exp.position,
     subtitle: exp.company,
     period: exp.period,
+    location: exp.location,
   }));
 
   return (
@@ -89,16 +93,6 @@ export function AboutSection() {
 
             {/* Education & Experience Grid */}
             <div className="grid md:grid-cols-2 gap-6">
-              <motion.div {...slideInUp(0)} className="group">
-                <TimelineCard
-                  icon={GraduationCap}
-                  title={t("educationTitle")}
-                  tagline="// Academic Journey"
-                  items={educationItems}
-                  color="cyan"
-                />
-              </motion.div>
-
               <motion.div {...slideInUp(0.1)} className="group">
                 <TimelineCard
                   icon={Briefcase}
@@ -107,6 +101,16 @@ export function AboutSection() {
                   items={experienceItems}
                   color="green"
                   showCurrentBadge
+                />
+              </motion.div>
+
+              <motion.div {...slideInUp(0)} className="group">
+                <TimelineCard
+                  icon={GraduationCap}
+                  title={t("educationTitle")}
+                  tagline="// Academic Journey"
+                  items={educationItems}
+                  color="cyan"
                 />
               </motion.div>
             </div>

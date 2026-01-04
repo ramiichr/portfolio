@@ -7,10 +7,10 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Globe, Check } from "lucide-react";
 
 const locales = [
-  { code: "en", name: "English", flag: "🇺🇸" },
-  { code: "fr", name: "Français", flag: "🇫🇷" },
-  { code: "de", name: "Deutsch", flag: "🇩🇪" },
-  { code: "ar", name: "العربية", flag: "🇸🇦" },
+  { code: "en", name: "English", flag: "\u{1F1FA}\u{1F1F8}" },
+  { code: "fr", name: "Français", flag: "\u{1F1EB}\u{1F1F7}" },
+  { code: "de", name: "Deutsch", flag: "\u{1F1E9}\u{1F1EA}" },
+  { code: "ar", name: "العربية", flag: "\u{1F1F9}\u{1F1F3}" },
 ];
 
 export function LanguageSwitcher() {

@@ -17,31 +17,35 @@
   "about": {
     "title": "About Me",
     "subtitle": "Get to know me better",
-    "description": "I'm a passionate full-stack developer with over 5 years of experience building modern web applications. I love turning complex problems into simple, beautiful, and intuitive solutions.",
+    "description": "I'm a passionate full-stack developer with over 3 years of experience building modern web applications. I love turning complex problems into simple, beautiful, and intuitive solutions.",
     "educationTitle": "Education",
     "experienceTitle": "Experience",
     "education": [
       {
-        "degree": "Master's in Computer Science",
-        "school": "University of Technology",
-        "period": "2018 - 2020"
+        "degree": "Master of Science in Media Informatics, Weaving the Web",
+        "school": "Cologne University of Applied Sciences",
+        "period": "Mar 2019 – Oct 2023",
+        "location": "Cologne, Germany"
       },
       {
-        "degree": "Bachelor's in Software Engineering",
-        "school": "State University",
-        "period": "2014 - 2018"
+        "degree": "Bachelor of Science in Informatic, Computer Systems and Software",
+        "school": "ISSAT Mateur",
+        "period": "Sep 2013 – Jun 2016",
+        "location": "Mateur, Tunisia"
       }
     ],
     "experience": [
       {
-        "position": "Senior Full Stack Developer",
-        "company": "Tech Company Inc.",
-        "period": "2021 - Present"
+        "position": "Frontend Developer",
+        "company": "German Etrade GmbH",
+        "period": "Oct 2023 - Dec 2025",
+        "location": "Dresden, Germany"
       },
       {
-        "position": "Full Stack Developer",
-        "company": "StartUp Labs",
-        "period": "2018 - 2021"
+        "position": "Web Developer",
+        "company": "Investal GmbH",
+        "period": "May 2022 - Oct 2023",
+        "location": "Wuppertal, Germany"
       }
     ]
   },

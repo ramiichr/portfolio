@@ -17,31 +17,35 @@
   "about": {
     "title": "Über mich",
     "subtitle": "Lernen Sie mich besser kennen",
-    "description": "Ich bin ein leidenschaftlicher Full-Stack-Entwickler mit über 5 Jahren Erfahrung in der Erstellung moderner Webanwendungen. Ich liebe es, komplexe Probleme in einfache, schöne und intuitive Lösungen zu verwandeln.",
+    "description": "Ich bin ein leidenschaftlicher Full-Stack-Entwickler mit über 3 Jahren Erfahrung in der Erstellung moderner Webanwendungen. Ich liebe es, komplexe Probleme in einfache, schöne und intuitive Lösungen zu verwandeln.",
     "educationTitle": "Ausbildung",
     "experienceTitle": "Berufserfahrung",
     "education": [
       {
-        "degree": "Master in Informatik",
-        "school": "Technische Universität",
-        "period": "2018 - 2020"
+        "degree": "Master of Science in Medieninformatik, Weaving the Web",
+        "school": "Technische Hochschule Köln",
+        "period": "März 2019 – Okt. 2023",
+        "location": "Köln, Deutschland"
       },
       {
-        "degree": "Bachelor in Software Engineering",
-        "school": "Staatliche Universität",
-        "period": "2014 - 2018"
+        "degree": "Bachelor of Science in Informatik, Computersysteme und Software",
+        "school": "ISSAT Mateur",
+        "period": "Sep. 2013 – Juni 2016",
+        "location": "Mateur, Tunesien"
       }
     ],
     "experience": [
       {
-        "position": "Senior Full Stack Entwickler",
-        "company": "Tech Company Inc.",
-        "period": "2021 - Heute"
+        "position": "Frontend-Entwickler",
+        "company": "German Etrade GmbH",
+        "period": "Okt. 2023 - Dez. 2025",
+        "location": "Dresden, Deutschland"
       },
       {
-        "position": "Full Stack Entwickler",
-        "company": "StartUp Labs",
-        "period": "2018 - 2021"
+        "position": "Web-Entwickler",
+        "company": "Investal GmbH",
+        "period": "Mai 2022 - Okt. 2023",
+        "location": "Wuppertal, Deutschland"
       }
     ]
   },

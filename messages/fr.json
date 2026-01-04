@@ -17,31 +17,35 @@
   "about": {
     "title": "À propos de moi",
     "subtitle": "Apprenez à mieux me connaître",
-    "description": "Je suis un développeur full-stack passionné avec plus de 5 ans d'expérience dans la création d'applications web modernes. J'aime transformer des problèmes complexes en solutions simples, belles et intuitives.",
+    "description": "Je suis un développeur full-stack passionné avec plus de 3 ans d'expérience dans la création d'applications web modernes. J'aime transformer des problèmes complexes en solutions simples, belles et intuitives.",
     "educationTitle": "Formation",
     "experienceTitle": "Expérience",
     "education": [
       {
-        "degree": "Master en Informatique",
-        "school": "Université de Technologie",
-        "period": "2018 - 2020"
+        "degree": "Master en Informatique des Médias, Weaving the Web",
+        "school": "Université des Sciences Appliquées de Cologne",
+        "period": "Mars 2019 – Oct. 2023",
+        "location": "Cologne, Allemagne"
       },
       {
-        "degree": "Licence en Génie Logiciel",
-        "school": "Université d'État",
-        "period": "2014 - 2018"
+        "degree": "Licence en Informatique, Systèmes Informatiques et Logiciels",
+        "school": "ISSAT Mateur",
+        "period": "Sep. 2013 – Juin 2016",
+        "location": "Mateur, Tunisie"
       }
     ],
     "experience": [
       {
-        "position": "Développeur Full Stack Senior",
-        "company": "Tech Company Inc.",
-        "period": "2021 - Présent"
+        "position": "Développeur Frontend",
+        "company": "German Etrade GmbH",
+        "period": "Oct. 2023 - Déc. 2025",
+        "location": "Dresde, Allemagne"
       },
       {
-        "position": "Développeur Full Stack",
-        "company": "StartUp Labs",
-        "period": "2018 - 2021"
+        "position": "Développeur Web",
+        "company": "Investal GmbH",
+        "period": "Mai 2022 - Oct. 2023",
+        "location": "Wuppertal, Allemagne"
       }
     ]
   },
