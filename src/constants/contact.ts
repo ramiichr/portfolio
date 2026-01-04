@@ -4,7 +4,8 @@ import {
   Clock,
   Github,
   Linkedin,
-  Twitter,
+  Facebook,
+  Instagram,
   LucideIcon,
 } from "lucide-react";
 
@@ -49,21 +50,27 @@ export const CONTACT_INFO_KEYS = ["email", "location", "availability"] as const;
 export const SOCIAL_LINKS: SocialLinkData[] = [
   {
     icon: Github,
-    href: "https://github.com",
+    href: "https://github.com/ramiichr",
     label: "GitHub",
     color: "from-gray-700 to-gray-900",
   },
   {
     icon: Linkedin,
-    href: "https://linkedin.com",
+    href: "https://www.linkedin.com/in/rami-cheikh-rouhou/",
     label: "LinkedIn",
     color: "from-blue-600 to-blue-800",
   },
   {
-    icon: Twitter,
-    href: "https://twitter.com",
-    label: "Twitter",
-    color: "from-sky-400 to-sky-600",
+    icon: Facebook,
+    href: "https://www.facebook.com/ramicheikhrouhou670/",
+    label: "Facebook",
+    color: "from-blue-500 to-blue-700",
+  },
+  {
+    icon: Instagram,
+    href: "https://www.instagram.com/rami.cheikhrouhou/",
+    label: "Instagram",
+    color: "from-pink-500 to-purple-600",
   },
 ];
 
