@@ -15,9 +15,9 @@ export interface Project {
 export const projects: Project[] = [
   {
     id: 1,
-    title: "Portfolio Website",
+    title: "Portfolio Website v1.0",
     description:
-      "A modern, responsive portfolio website built with Next.js and TypeScript. Features include internationalization (English/German), dark/light mode, animations with Framer Motion, and a dashboard for visitor analytics using Redis.",
+      "A modern, responsive portfolio website built with Next.js and TypeScript.",
     image: "/images/portfolio.png",
     tags: ["Next.js", "TypeScript", "Framer Motion", "Tailwind CSS", "Redis"],
     category: "web",
@@ -29,7 +29,7 @@ export const projects: Project[] = [
     id: 2,
     title: "Weather Forecast App",
     description:
-      "A comprehensive weather application that provides current conditions and 7-day forecasts for any location. Features include interactive maps, hourly forecasts, air quality index, and severe weather alerts with a responsive design.",
+      "A comprehensive weather application that provides current conditions and 7-day forecasts for any location.",
     image: "/images/weather.png",
     tags: [
       "React",
@@ -47,7 +47,7 @@ export const projects: Project[] = [
     id: 3,
     title: "Exchange Flow",
     description:
-      "A currency converter application that provides real-time exchange rates for over 150 currencies. Features include historical rate charts, currency comparison, and a clean, intuitive interface with responsive design for all devices.",
+      "A currency converter application that provides real-time exchange rates for over 150 currencies.",
     image: "/images/exchangeflow.png",
     tags: [
       "Next.js",
@@ -65,7 +65,7 @@ export const projects: Project[] = [
     id: 4,
     title: "ConnectHub",
     description:
-      "A feature-rich real-time chat application with text, voice, and video capabilities. Features include real-time messaging, user authentication, voice & video calls, responsive design, user status indicators, and message history.",
+      "A feature-rich real-time chat application with text, voice, and video capabilities.",
     image: "/images/chatapp.png",
     tags: [
       "React",

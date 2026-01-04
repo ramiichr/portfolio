@@ -79,9 +79,9 @@ function ProjectImage({
       <motion.div
         animate={{ opacity: isHovered ? 1 : 0.3 }}
         transition={ANIMATION_CONFIG.hover}
-        className={`absolute inset-0 bg-gradient-to-t ${project.gradient} mix-blend-overlay`}
+        className={`absolute inset-0 bg-gradient-to-t ${project.gradient} mix-blend-overlay pointer-events-none`}
       />
-      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none" />
 
       {/* Floating icon */}
       <motion.div
@@ -132,7 +132,7 @@ function ProjectImage({
       </motion.div>
 
       {/* Title overlay */}
-      <div className="absolute bottom-0 left-0 right-0 p-6">
+      <div className="absolute bottom-0 left-0 right-0 p-6 pointer-events-none">
         <motion.div
           animate={{ y: isHovered ? -5 : 0 }}
           transition={ANIMATION_CONFIG.hover}

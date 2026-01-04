@@ -26,19 +26,19 @@ export interface SocialLinkData {
 export const CONTACT_INFO: Omit<ContactInfo, "labelKey">[] = [
   {
     icon: Mail,
-    value: "hello@example.com",
+    value: "ramii.cheikhrouhou@gmail.com",
     color: "from-primary-500 to-blue-600",
-    action: "mailto:hello@example.com",
+    action: "mailto:ramii.cheikhrouhou@gmail.com",
   },
   {
     icon: MapPin,
-    value: "San Francisco, CA",
+    value: "Tunisia",
     color: "from-accent-500 to-pink-600",
     action: "#",
   },
   {
     icon: Clock,
-    value: "Mon - Fri, 9am - 6pm",
+    value: "24/7",
     color: "from-emerald-500 to-teal-600",
     action: "#",
   },
