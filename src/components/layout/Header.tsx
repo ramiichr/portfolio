@@ -307,72 +307,82 @@ export function Header() {
             </motion.button>
           </div>
         </div>
-
-        {/* Mobile Menu */}
-        <AnimatePresence>
-          {isMobileMenuOpen && (
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              exit={{ opacity: 0, height: 0 }}
-              className="md:hidden overflow-hidden"
-            >
-              <div className="relative py-4 border-t border-cyan-500/30">
-                {/* Grid background */}
-                <div
-                  className="absolute inset-0 opacity-10"
-                  style={{
-                    backgroundImage:
-                      "linear-gradient(cyan 1px, transparent 1px), linear-gradient(90deg, cyan 1px, transparent 1px)",
-                    backgroundSize: "20px 20px",
-                  }}
-                />
-
-                <div className="relative space-y-1">
-                  {navItems.map((item, index) => (
-                    <motion.a
-                      key={item.key}
-                      href={item.href}
-                      initial={{ opacity: 0, x: -20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: index * 0.1 }}
-                      onClick={() => setIsMobileMenuOpen(false)}
-                      className={`flex items-center gap-3 px-4 py-3 font-mono uppercase text-sm tracking-wider transition-colors ${
-                        activeSection === item.key
-                          ? "text-cyan-400 bg-cyan-500/10 border-l-2 border-cyan-400"
-                          : "text-gray-600 dark:text-gray-400 hover:text-cyan-400 hover:bg-cyan-500/5"
-                      }`}
-                    >
-                      <ChevronRight
-                        className={`w-4 h-4 ${
-                          activeSection === item.key
-                            ? "text-cyan-400"
-                            : "text-gray-400"
-                        }`}
-                      />
-                      {t(item.key)}
-                      {activeSection === item.key && (
-                        <span className="ml-auto text-xs text-cyan-500">
-                          [ACTIVE]
-                        </span>
-                      )}
-                    </motion.a>
-                  ))}
-                </div>
-
-                {/* Mobile controls */}
-                <div className="flex items-center gap-4 mt-4 pt-4 px-4 border-t border-gray-200/50 dark:border-gray-800/50">
-                  <span className="text-xs font-mono text-gray-500 uppercase">
-                    SYS:
-                  </span>
-                  <LanguageSwitcher />
-                  <ThemeSwitcher />
-                </div>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
       </nav>
+
+      {/* Mobile Menu - Outside nav for proper positioning */}
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            className="md:hidden overflow-hidden bg-white dark:bg-gray-950 border-b border-cyan-500/30 shadow-lg"
+          >
+            <div className="relative py-4 container mx-auto px-4 sm:px-6 lg:px-8">
+              {/* Grid background */}
+              <div
+                className="absolute inset-0 opacity-10"
+                style={{
+                  backgroundImage:
+                    "linear-gradient(cyan 1px, transparent 1px), linear-gradient(90deg, cyan 1px, transparent 1px)",
+                  backgroundSize: "20px 20px",
+                }}
+              />
+
+              <div className="relative space-y-1">
+                {navItems.map((item, index) => (
+                  <motion.a
+                    key={item.key}
+                    href={item.href}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: index * 0.1 }}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setIsMobileMenuOpen(false);
+                      const targetId = item.href.replace("#", "");
+                      const element = document.getElementById(targetId);
+                      if (element) {
+                        setTimeout(() => {
+                          element.scrollIntoView({ behavior: "smooth" });
+                        }, 300);
+                      }
+                    }}
+                    className={`flex items-center gap-3 px-4 py-3 font-mono uppercase text-sm tracking-wider transition-colors ${
+                      activeSection === item.key
+                        ? "text-cyan-400 bg-cyan-500/10 border-l-2 border-cyan-400"
+                        : "text-gray-600 dark:text-gray-400 hover:text-cyan-400 hover:bg-cyan-500/5"
+                    }`}
+                  >
+                    <ChevronRight
+                      className={`w-4 h-4 ${
+                        activeSection === item.key
+                          ? "text-cyan-400"
+                          : "text-gray-400"
+                      }`}
+                    />
+                    {t(item.key)}
+                    {activeSection === item.key && (
+                      <span className="ml-auto text-xs text-cyan-500">
+                        [ACTIVE]
+                      </span>
+                    )}
+                  </motion.a>
+                ))}
+              </div>
+
+              {/* Mobile controls */}
+              <div className="flex items-center gap-4 mt-4 pt-4 px-4 border-t border-gray-200/50 dark:border-gray-800/50">
+                <span className="text-xs font-mono text-gray-500 uppercase">
+                  SYS:
+                </span>
+                <LanguageSwitcher />
+                <ThemeSwitcher />
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.header>
   );
 }

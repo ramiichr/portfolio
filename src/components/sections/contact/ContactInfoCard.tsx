@@ -45,11 +45,11 @@ export function ContactInfoCard({ item, index }: ContactInfoCardProps) {
         <Icon className="w-5 h-5 text-white" />
       </motion.div>
 
-      <div className="flex-1">
+      <div className="flex-1 min-w-0">
         <p className="text-xs font-mono font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider">
           {item.label}
         </p>
-        <p className="font-mono font-semibold text-gray-900 dark:text-white">
+        <p className="font-mono font-semibold text-gray-900 dark:text-white text-sm sm:text-base break-all">
           {item.value}
         </p>
       </div>
