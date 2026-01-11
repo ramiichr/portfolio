@@ -3,17 +3,17 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTranslations } from "next-intl";
-import { Link, usePathname } from "@/i18n/routing";
+import { Link } from "@/i18n/routing";
 import { ThemeSwitcher } from "@/components/ui/ThemeSwitcher";
 import { LanguageSwitcher } from "@/components/ui/LanguageSwitcher";
 import { Menu, X, Zap, ChevronRight } from "lucide-react";
 
 const navItems = [
-  { key: "home", href: "/" },
-  { key: "about", href: "/about" },
-  { key: "skills", href: "/skills" },
-  { key: "projects", href: "/projects" },
-  { key: "contact", href: "/contact" },
+  { key: "home", href: "#home", sectionId: "home" },
+  { key: "about", href: "#about", sectionId: "about" },
+  { key: "skills", href: "#skills", sectionId: "skills" },
+  { key: "projects", href: "#projects", sectionId: "projects" },
+  { key: "contact", href: "#contact", sectionId: "contact" },
 ];
 
 // Neon text with glow effect
@@ -35,24 +35,41 @@ function NeonText({
 // Cyberpunk nav link with scan line effect
 function CyberNavLink({
   href,
+  sectionId,
   children,
   isActive,
   onClick,
 }: {
   href: string;
+  sectionId: string;
   children: React.ReactNode;
   isActive: boolean;
   onClick?: () => void;
 }) {
   const [isHovered, setIsHovered] = useState(false);
 
+  const handleClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+      // Update URL without page reload
+      window.history.pushState(
+        null,
+        "",
+        `/${sectionId === "home" ? "" : sectionId}`
+      );
+    }
+    onClick?.();
+  };
+
   return (
-    <Link
+    <a
       href={href}
-      onClick={onClick}
+      onClick={handleClick}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className="relative px-4 py-2 group"
+      className="relative px-4 py-2 group cursor-pointer"
     >
       {/* Background with clip path */}
       <motion.div
@@ -100,7 +117,7 @@ function CyberNavLink({
           <span className="absolute bottom-0 right-0 w-2 h-2 border-r border-b border-cyan-400" />
         </>
       )}
-    </Link>
+    </a>
   );
 }
 
@@ -186,19 +203,29 @@ function CyberLogo() {
 
 export function Header() {
   const t = useTranslations("navigation");
-  const pathname = usePathname();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
-  // Determine active section based on current pathname
-  const activeSection =
-    navItems.find((item) => item.href === pathname)?.key || "home";
+  const [activeSection, setActiveSection] = useState("home");
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
+
+      // Detect active section based on scroll position
+      const sections = navItems.map((item) => item.sectionId);
+      for (const section of sections.reverse()) {
+        const element = document.getElementById(section);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          if (rect.top <= 150) {
+            setActiveSection(section);
+            break;
+          }
+        }
+      }
     };
     window.addEventListener("scroll", handleScroll);
+    handleScroll(); // Check initial position
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -251,6 +278,7 @@ export function Header() {
                 <CyberNavLink
                   key={item.key}
                   href={item.href}
+                  sectionId={item.sectionId}
                   isActive={activeSection === item.key}
                 >
                   {t(item.key)}
@@ -329,9 +357,25 @@ export function Header() {
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: index * 0.1 }}
                   >
-                    <Link
+                    <a
                       href={item.href}
-                      onClick={() => setIsMobileMenuOpen(false)}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setIsMobileMenuOpen(false);
+                        const element = document.getElementById(item.sectionId);
+                        if (element) {
+                          setTimeout(() => {
+                            element.scrollIntoView({ behavior: "smooth" });
+                            window.history.pushState(
+                              null,
+                              "",
+                              `/${
+                                item.sectionId === "home" ? "" : item.sectionId
+                              }`
+                            );
+                          }, 300);
+                        }
+                      }}
                       className={`flex items-center gap-3 px-4 py-3 font-mono uppercase text-sm tracking-wider transition-colors ${
                         activeSection === item.key
                           ? "text-cyan-400 bg-cyan-500/10 border-l-2 border-cyan-400"
@@ -351,7 +395,7 @@ export function Header() {
                           [ACTIVE]
                         </span>
                       )}
-                    </Link>
+                    </a>
                   </motion.div>
                 ))}
               </div>
