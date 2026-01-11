@@ -9,11 +9,5 @@ export function UmamiAnalytics() {
     return null;
   }
 
-  return (
-    <Script
-      async
-      src="https://cloud.umami.is/script.js"
-      data-website-id={websiteId}
-    />
-  );
+  return <Script async src="/stats/script.js" data-website-id={websiteId} />;
 }

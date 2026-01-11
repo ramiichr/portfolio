@@ -3,17 +3,17 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTranslations } from "next-intl";
-import { Link } from "@/i18n/routing";
+import { Link, usePathname } from "@/i18n/routing";
 import { ThemeSwitcher } from "@/components/ui/ThemeSwitcher";
 import { LanguageSwitcher } from "@/components/ui/LanguageSwitcher";
 import { Menu, X, Zap, ChevronRight } from "lucide-react";
 
 const navItems = [
-  { key: "home", href: "#home" },
-  { key: "about", href: "#about" },
-  { key: "skills", href: "#skills" },
-  { key: "projects", href: "#projects" },
-  { key: "contact", href: "#contact" },
+  { key: "home", href: "/" },
+  { key: "about", href: "/about" },
+  { key: "skills", href: "/skills" },
+  { key: "projects", href: "/projects" },
+  { key: "contact", href: "/contact" },
 ];
 
 // Neon text with glow effect
@@ -47,7 +47,7 @@ function CyberNavLink({
   const [isHovered, setIsHovered] = useState(false);
 
   return (
-    <motion.a
+    <Link
       href={href}
       onClick={onClick}
       onMouseEnter={() => setIsHovered(true)}
@@ -100,7 +100,7 @@ function CyberNavLink({
           <span className="absolute bottom-0 right-0 w-2 h-2 border-r border-b border-cyan-400" />
         </>
       )}
-    </motion.a>
+    </Link>
   );
 }
 
@@ -186,25 +186,17 @@ function CyberLogo() {
 
 export function Header() {
   const t = useTranslations("navigation");
+  const pathname = usePathname();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState("home");
+
+  // Determine active section based on current pathname
+  const activeSection =
+    navItems.find((item) => item.href === pathname)?.key || "home";
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
-
-      const sections = navItems.map((item) => item.href.replace("#", ""));
-      for (const section of sections.reverse()) {
-        const element = document.getElementById(section);
-        if (element) {
-          const rect = element.getBoundingClientRect();
-          if (rect.top <= 100) {
-            setActiveSection(section);
-            break;
-          }
-        }
-      }
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
@@ -331,43 +323,36 @@ export function Header() {
 
               <div className="relative space-y-1">
                 {navItems.map((item, index) => (
-                  <motion.a
+                  <motion.div
                     key={item.key}
-                    href={item.href}
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: index * 0.1 }}
-                    onClick={(e) => {
-                      e.preventDefault();
-                      setIsMobileMenuOpen(false);
-                      const targetId = item.href.replace("#", "");
-                      const element = document.getElementById(targetId);
-                      if (element) {
-                        setTimeout(() => {
-                          element.scrollIntoView({ behavior: "smooth" });
-                        }, 300);
-                      }
-                    }}
-                    className={`flex items-center gap-3 px-4 py-3 font-mono uppercase text-sm tracking-wider transition-colors ${
-                      activeSection === item.key
-                        ? "text-cyan-400 bg-cyan-500/10 border-l-2 border-cyan-400"
-                        : "text-gray-600 dark:text-gray-400 hover:text-cyan-400 hover:bg-cyan-500/5"
-                    }`}
                   >
-                    <ChevronRight
-                      className={`w-4 h-4 ${
+                    <Link
+                      href={item.href}
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      className={`flex items-center gap-3 px-4 py-3 font-mono uppercase text-sm tracking-wider transition-colors ${
                         activeSection === item.key
-                          ? "text-cyan-400"
-                          : "text-gray-400"
+                          ? "text-cyan-400 bg-cyan-500/10 border-l-2 border-cyan-400"
+                          : "text-gray-600 dark:text-gray-400 hover:text-cyan-400 hover:bg-cyan-500/5"
                       }`}
-                    />
-                    {t(item.key)}
-                    {activeSection === item.key && (
-                      <span className="ml-auto text-xs text-cyan-500">
-                        [ACTIVE]
-                      </span>
-                    )}
-                  </motion.a>
+                    >
+                      <ChevronRight
+                        className={`w-4 h-4 ${
+                          activeSection === item.key
+                            ? "text-cyan-400"
+                            : "text-gray-400"
+                        }`}
+                      />
+                      {t(item.key)}
+                      {activeSection === item.key && (
+                        <span className="ml-auto text-xs text-cyan-500">
+                          [ACTIVE]
+                        </span>
+                      )}
+                    </Link>
+                  </motion.div>
                 ))}
               </div>
 
