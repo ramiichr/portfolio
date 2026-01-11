@@ -214,21 +214,33 @@ export function Header() {
 
       // Detect active section based on scroll position
       const sections = navItems.map((item) => item.sectionId);
+      let newActiveSection = "home";
+
       for (const section of sections.reverse()) {
         const element = document.getElementById(section);
         if (element) {
           const rect = element.getBoundingClientRect();
           if (rect.top <= 150) {
-            setActiveSection(section);
+            newActiveSection = section;
             break;
           }
         }
+      }
+
+      // Update URL when active section changes
+      if (newActiveSection !== activeSection) {
+        setActiveSection(newActiveSection);
+        const path =
+          newActiveSection === "home"
+            ? `/${locale}`
+            : `/${locale}/${newActiveSection}`;
+        window.history.replaceState(null, "", path);
       }
     };
     window.addEventListener("scroll", handleScroll);
     handleScroll(); // Check initial position
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [activeSection, locale]);
 
   return (
     <motion.header
