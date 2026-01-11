@@ -5,6 +5,7 @@ import { getMessages } from "next-intl/server";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { UmamiAnalytics } from "@/components/analytics";
 import "../globals.css";
 
 const inter = Inter({
@@ -57,6 +58,9 @@ export default async function LocaleLayout({
 
   return (
     <html lang={locale} suppressHydrationWarning>
+      <head>
+        <UmamiAnalytics />
+      </head>
       <body className={`${inter.variable} ${spaceGrotesk.variable} font-sans`}>
         <ThemeProvider
           attribute="class"
