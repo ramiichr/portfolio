@@ -48,7 +48,7 @@ export function HeroSection() {
           <HeroTitle name={t("name")} />
           <HeroSubtitle title={t("title")} />
           <HeroDescription text={t("subtitle")} />
-          <HeroActions ctaText={t("cta")} downloadText={t("downloadCV")} />
+          <HeroActions ctaText={t("cta")} />
           <TechStack className="mt-16" />
         </div>
 

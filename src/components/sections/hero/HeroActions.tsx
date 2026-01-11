@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowDown, Download } from "lucide-react";
+import { ArrowDown } from "lucide-react";
 import { MagneticButton } from "@/components/ui";
 import {
   fadeInUp,
@@ -12,10 +12,9 @@ import {
 
 interface HeroActionsProps {
   ctaText: string;
-  downloadText: string;
 }
 
-export function HeroActions({ ctaText, downloadText }: HeroActionsProps) {
+export function HeroActions({ ctaText }: HeroActionsProps) {
   return (
     <motion.div
       {...fadeInUp}
@@ -27,11 +26,6 @@ export function HeroActions({ ctaText, downloadText }: HeroActionsProps) {
         <motion.div animate={bounceAnimation} transition={bounceTransition}>
           <ArrowDown className="w-5 h-5" />
         </motion.div>
-      </MagneticButton>
-
-      <MagneticButton href="/cv.pdf" variant="secondary">
-        <Download className="w-5 h-5" />
-        {downloadText}
       </MagneticButton>
     </motion.div>
   );
