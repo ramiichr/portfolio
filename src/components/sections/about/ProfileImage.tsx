@@ -38,6 +38,7 @@ export function ProfileImage({ name, location, imageSrc }: ProfileImageProps) {
             src={imageSrc}
             alt="Profile photo"
             fill
+            sizes="(max-width: 768px) 100vw, 400px"
             className="object-cover object-[center_10%] transition-all duration-700 ease-out group-hover:scale-110"
             priority
           />

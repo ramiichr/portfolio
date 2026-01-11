@@ -1,5 +1,6 @@
 "use client";
 
+import { forwardRef } from "react";
 import { motion } from "framer-motion";
 import { ExternalLink, Github, ArrowUpRight, Code2 } from "lucide-react";
 import Image from "next/image";
@@ -72,6 +73,7 @@ function ProjectImage({
         src={project.image}
         alt={project.title}
         fill
+        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         className="object-cover transition-all duration-700 ease-out group-hover:scale-110"
       />
 
@@ -176,75 +178,78 @@ function ProjectTags({ tags }: { tags: string[] }) {
   );
 }
 
-export function ProjectCard({ project, index }: ProjectCardProps) {
-  const {
-    isHovered,
-    springRotateX,
-    springRotateY,
-    handleMouseMove,
-    handleMouseEnter,
-    handleMouseLeave,
-  } = use3DCard({ rotationRange: 8 });
+export const ProjectCard = forwardRef<HTMLElement, ProjectCardProps>(
+  function ProjectCard({ project, index }, ref) {
+    const {
+      isHovered,
+      springRotateX,
+      springRotateY,
+      handleMouseMove,
+      handleMouseEnter,
+      handleMouseLeave,
+    } = use3DCard({ rotationRange: 8 });
 
-  return (
-    <motion.article
-      layout
-      {...ANIMATION_CONFIG.card}
-      transition={{ ...ANIMATION_CONFIG.transition, delay: index * 0.1 }}
-      style={{ rotateX: springRotateX, rotateY: springRotateY }}
-      onMouseMove={handleMouseMove}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-      className="group relative perspective-1000"
-    >
-      {/* Glow effect */}
-      <motion.div
-        animate={{
-          opacity: isHovered ? 0.6 : 0,
-          scale: isHovered ? 1.05 : 0.95,
-        }}
-        transition={ANIMATION_CONFIG.hover}
-        className={`absolute -inset-2 bg-gradient-to-r ${project.gradient} rounded-3xl blur-2xl -z-10`}
-      />
+    return (
+      <motion.article
+        ref={ref}
+        layout
+        {...ANIMATION_CONFIG.card}
+        transition={{ ...ANIMATION_CONFIG.transition, delay: index * 0.1 }}
+        style={{ rotateX: springRotateX, rotateY: springRotateY }}
+        onMouseMove={handleMouseMove}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+        className="group relative perspective-1000"
+      >
+        {/* Glow effect */}
+        <motion.div
+          animate={{
+            opacity: isHovered ? 0.6 : 0,
+            scale: isHovered ? 1.05 : 0.95,
+          }}
+          transition={ANIMATION_CONFIG.hover}
+          className={`absolute -inset-2 bg-gradient-to-r ${project.gradient} rounded-3xl blur-2xl -z-10`}
+        />
 
-      {/* Main card */}
-      <div
-        className="relative rounded-sm overflow-hidden
+        {/* Main card */}
+        <div
+          className="relative rounded-sm overflow-hidden
           bg-white/80 dark:bg-gray-950/70 backdrop-blur-sm
           border border-gray-300 dark:border-gray-700/50
           shadow-sm shadow-gray-200/50 dark:shadow-black/50 hover:border-cyan-500/50
           transition-all duration-500"
-      >
-        <ProjectImage project={project} isHovered={isHovered} />
+        >
+          <ProjectImage project={project} isHovered={isHovered} />
 
-        {/* Content section */}
-        <div className="p-6 relative">
+          {/* Content section */}
+          <div className="p-6 relative">
+            <motion.div
+              animate={{ scaleX: isHovered ? 1 : 0 }}
+              transition={{ duration: 0.5, ease: "easeOut" }}
+              className={`absolute top-0 left-6 right-6 h-[2px] bg-gradient-to-r ${project.gradient} origin-left`}
+            />
+
+            <p className="text-gray-600 dark:text-gray-400 text-sm mb-5 line-clamp-2">
+              {project.description}
+            </p>
+
+            <ProjectTags tags={project.tags} />
+
+            <motion.div
+              animate={{ width: isHovered ? "100%" : "0%" }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
+              className={`absolute bottom-0 left-0 h-1 bg-gradient-to-r ${project.gradient}`}
+            />
+          </div>
+
+          {/* Shine effect */}
           <motion.div
-            animate={{ scaleX: isHovered ? 1 : 0 }}
-            transition={{ duration: 0.5, ease: "easeOut" }}
-            className={`absolute top-0 left-6 right-6 h-[2px] bg-gradient-to-r ${project.gradient} origin-left`}
-          />
-
-          <p className="text-gray-600 dark:text-gray-400 text-sm mb-5 line-clamp-2">
-            {project.description}
-          </p>
-
-          <ProjectTags tags={project.tags} />
-
-          <motion.div
-            animate={{ width: isHovered ? "100%" : "0%" }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
-            className={`absolute bottom-0 left-0 h-1 bg-gradient-to-r ${project.gradient}`}
+            animate={{ x: isHovered ? 400 : -400 }}
+            transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
+            className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent skew-x-12 pointer-events-none"
           />
         </div>
-
-        {/* Shine effect */}
-        <motion.div
-          animate={{ x: isHovered ? 400 : -400 }}
-          transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
-          className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent skew-x-12 pointer-events-none"
-        />
-      </div>
-    </motion.article>
-  );
-}
+      </motion.article>
+    );
+  }
+);

@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { Link } from "@/i18n/routing";
 import { ThemeSwitcher } from "@/components/ui/ThemeSwitcher";
 import { LanguageSwitcher } from "@/components/ui/LanguageSwitcher";
@@ -36,12 +36,14 @@ function NeonText({
 function CyberNavLink({
   href,
   sectionId,
+  locale,
   children,
   isActive,
   onClick,
 }: {
   href: string;
   sectionId: string;
+  locale: string;
   children: React.ReactNode;
   isActive: boolean;
   onClick?: () => void;
@@ -54,11 +56,9 @@ function CyberNavLink({
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
       // Update URL without page reload
-      window.history.pushState(
-        null,
-        "",
-        `/${sectionId === "home" ? "" : sectionId}`
-      );
+      const path =
+        sectionId === "home" ? `/${locale}` : `/${locale}/${sectionId}`;
+      window.history.pushState(null, "", path);
     }
     onClick?.();
   };
@@ -203,6 +203,7 @@ function CyberLogo() {
 
 export function Header() {
   const t = useTranslations("navigation");
+  const locale = useLocale();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
@@ -279,6 +280,7 @@ export function Header() {
                   key={item.key}
                   href={item.href}
                   sectionId={item.sectionId}
+                  locale={locale}
                   isActive={activeSection === item.key}
                 >
                   {t(item.key)}
@@ -366,13 +368,11 @@ export function Header() {
                         if (element) {
                           setTimeout(() => {
                             element.scrollIntoView({ behavior: "smooth" });
-                            window.history.pushState(
-                              null,
-                              "",
-                              `/${
-                                item.sectionId === "home" ? "" : item.sectionId
-                              }`
-                            );
+                            const path =
+                              item.sectionId === "home"
+                                ? `/${locale}`
+                                : `/${locale}/${item.sectionId}`;
+                            window.history.pushState(null, "", path);
                           }, 300);
                         }
                       }}
