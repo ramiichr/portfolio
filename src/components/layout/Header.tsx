@@ -303,11 +303,17 @@ export function Header() {
 
           {/* Right side controls */}
           <div className="flex items-center gap-3">
-            {/* Control panel style container */}
-            <div className="hidden sm:flex items-center gap-2 px-3 py-2 border border-gray-200/50 dark:border-gray-800/50 rounded-sm bg-white/50 dark:bg-gray-900/50 backdrop-blur-sm">
+            {/* Control panel style container - Desktop */}
+            <div className="hidden md:flex items-center gap-2 px-3 py-2 border border-gray-200/50 dark:border-gray-800/50 rounded-sm bg-white/50 dark:bg-gray-900/50 backdrop-blur-sm">
               <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
               <LanguageSwitcher />
               <div className="w-px h-4 bg-gray-300 dark:bg-gray-700" />
+              <ThemeSwitcher />
+            </div>
+
+            {/* Mobile controls - next to hamburger */}
+            <div className="flex md:hidden items-center gap-2">
+              <LanguageSwitcher />
               <ThemeSwitcher />
             </div>
 
@@ -410,15 +416,6 @@ export function Header() {
                     </a>
                   </motion.div>
                 ))}
-              </div>
-
-              {/* Mobile controls */}
-              <div className="flex items-center gap-4 mt-4 pt-4 px-4 border-t border-gray-200/50 dark:border-gray-800/50">
-                <span className="text-xs font-mono text-gray-500 uppercase">
-                  SYS:
-                </span>
-                <LanguageSwitcher />
-                <ThemeSwitcher />
               </div>
             </div>
           </motion.div>

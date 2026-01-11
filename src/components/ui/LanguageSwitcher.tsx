@@ -35,15 +35,15 @@ export function LanguageSwitcher() {
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
         onClick={() => setIsOpen(!isOpen)}
-        className="relative flex items-center gap-2 px-3 py-2.5 rounded-full 
+        className="relative flex items-center justify-center w-10 h-10 md:w-auto md:h-auto md:gap-2 md:px-3 md:py-2.5 rounded-full 
         bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900 
         shadow-lg shadow-gray-200/50 dark:shadow-gray-900/50 
         hover:shadow-xl hover:shadow-primary-500/20 dark:hover:shadow-primary-500/10
         transition-all duration-300 group border border-gray-200/50 dark:border-gray-700/50"
         aria-label={t("select")}
       >
-        <Globe className="w-4 h-4 text-gray-700 dark:text-gray-300 group-hover:text-primary-500 transition-colors" />
-        <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
+        <Globe className="hidden md:block w-4 h-4 text-gray-700 dark:text-gray-300 group-hover:text-primary-500 transition-colors" />
+        <span className="text-lg md:text-sm md:font-medium text-gray-700 dark:text-gray-300">
           {currentLocale.flag}
         </span>
       </motion.button>
