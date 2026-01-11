@@ -11,9 +11,9 @@ export function UmamiAnalytics() {
 
   return (
     <Script
+      async
       src="https://cloud.umami.is/script.js"
       data-website-id={websiteId}
-      strategy="afterInteractive"
     />
   );
 }
