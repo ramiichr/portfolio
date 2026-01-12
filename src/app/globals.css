@@ -22,6 +22,17 @@
     @apply antialiased;
   }
 
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  .font-display {
+    font-family: var(--font-space-grotesk), system-ui, -apple-system, sans-serif !important;
+    font-style: normal !important;
+  }
+
   ::selection {
     @apply bg-primary-500/30;
   }
