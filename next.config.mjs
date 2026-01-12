@@ -21,9 +21,7 @@ const nextConfig = {
   experimental: {
     optimizeCss: true,
     scrollRestoration: true,
-    serverActions: true,
-    turboMode: true,
-    legacyBrowsers: false,
+    // experimental options removed: serverActions, turboMode, legacyBrowsers
   },
   async rewrites() {
     return [
