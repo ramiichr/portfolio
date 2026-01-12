@@ -15,6 +15,15 @@ const nextConfig = {
         hostname: "avatars.githubusercontent.com",
       },
     ],
+    formats: ["image/webp", "image/avif"],
+    minimumCacheTTL: 86400,
+  },
+  experimental: {
+    optimizeCss: true,
+    scrollRestoration: true,
+    serverActions: true,
+    turboMode: true,
+    legacyBrowsers: false,
   },
   async rewrites() {
     return [

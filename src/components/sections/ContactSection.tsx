@@ -14,7 +14,7 @@ import {
   Cpu,
   Zap,
 } from "lucide-react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, memo, useMemo } from "react";
 import { SocialLink, SectionHeader } from "@/components/ui";
 import { ContactInfoItem } from "./contact";
 import {
@@ -22,6 +22,8 @@ import {
   CONTACT_INFO_KEYS,
   SOCIAL_LINKS,
 } from "@/constants/contact";
+import { useReducedMotion } from "@/hooks/useReducedMotion";
+import { useIsMobile } from "@/hooks/useMediaQuery";
 
 export function ContactSection() {
   const t = useTranslations("contact");
@@ -70,39 +72,65 @@ export function ContactSection() {
   );
 }
 
-function MatrixRain() {
-  const [columns, setColumns] = useState<
-    Array<{
-      id: number;
-      x: number;
-      chars: string[];
-      speed: number;
-      delay: number;
-    }>
-  >([]);
+const MatrixRain = memo(function MatrixRain() {
+  const reducedMotion = useReducedMotion();
+  const isMobile = useIsMobile();
+  const [mounted, setMounted] = useState(false);
 
-  useEffect(() => {
-    setColumns(
-      Array.from({ length: 30 }, (_, i) => ({
+  // Reduce columns on mobile for better performance
+  const columnCount = isMobile ? 10 : 30;
+  const charCount = isMobile ? 12 : 20;
+  const columns = useMemo(
+    () =>
+      Array.from({ length: columnCount }, (_, i) => ({
         id: i,
-        x: (i / 30) * 100,
-        chars: Array.from({ length: 20 }, () =>
+        x: (i / columnCount) * 100,
+        chars: Array.from({ length: charCount }, () =>
           String.fromCharCode(0x30a0 + Math.floor(Math.random() * 96))
         ),
         speed: Math.random() * 2 + 1,
         delay: Math.random() * 5,
-      }))
-    );
+      })),
+    [columnCount, charCount]
+  );
+
+  // Only render animated content on client to avoid hydration mismatch
+  useEffect(() => {
+    setMounted(true);
   }, []);
 
-  if (columns.length === 0) return null;
+  if (!mounted) {
+    // Render nothing on server
+    return null;
+  }
+
+  // Skip animation entirely for reduced motion
+  if (reducedMotion) {
+    return (
+      <div className="absolute inset-0 overflow-hidden opacity-[0.02] dark:opacity-[0.04] pointer-events-none">
+        {columns.slice(0, 8).map((col) => (
+          <div
+            key={col.id}
+            className="absolute top-0 font-mono text-xs text-emerald-500 whitespace-pre leading-4"
+            style={{ left: `${col.x}%`, top: `${col.delay * 10}%` }}
+          >
+            {col.chars.slice(0, 6).map((char, i) => (
+              <div key={i} style={{ opacity: 0.3 - i * 0.05 }}>
+                {char}
+              </div>
+            ))}
+          </div>
+        ))}
+      </div>
+    );
+  }
 
   return (
     <div className="absolute inset-0 overflow-hidden opacity-[0.03] dark:opacity-[0.08] pointer-events-none">
       {columns.map((col) => (
         <motion.div
           key={col.id}
-          className="absolute top-0 font-mono text-xs text-emerald-500 whitespace-pre leading-4"
+          className="absolute top-0 font-mono text-xs text-emerald-500 whitespace-pre leading-4 will-change-transform"
           style={{ left: `${col.x}%` }}
           initial={{ y: "-100%" }}
           animate={{ y: "100vh" }}
@@ -122,9 +150,12 @@ function MatrixRain() {
       ))}
     </div>
   );
-}
+});
 
-function CircuitPattern() {
+const CircuitPattern = memo(function CircuitPattern() {
+  const reducedMotion = useReducedMotion();
+  const isMobile = useIsMobile();
+
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none">
       <svg className="absolute inset-0 w-full h-full opacity-[0.02] dark:opacity-[0.05]">
@@ -156,31 +187,33 @@ function CircuitPattern() {
         <rect width="100%" height="100%" fill="url(#circuit)" />
       </svg>
 
-      {/* Animated data pulses along circuits */}
-      {[0, 1, 2, 3].map((i) => (
-        <motion.div
-          key={i}
-          className="absolute w-2 h-2 bg-cyan-400 rounded-full blur-sm"
-          style={{
-            left: `${20 + i * 20}%`,
-            top: `${30 + i * 15}%`,
-          }}
-          animate={{
-            x: [0, 100, 100, 0, 0],
-            y: [0, 0, 50, 50, 0],
-            opacity: [0, 1, 1, 1, 0],
-          }}
-          transition={{
-            duration: 4,
-            repeat: Infinity,
-            delay: i * 1,
-            ease: "linear",
-          }}
-        />
-      ))}
+      {/* Animated data pulses along circuits - skip on mobile/reduced motion */}
+      {!reducedMotion &&
+        !isMobile &&
+        [0, 1, 2, 3].map((i) => (
+          <motion.div
+            key={i}
+            className="absolute w-2 h-2 bg-cyan-400 rounded-full blur-sm will-change-transform"
+            style={{
+              left: `${20 + i * 20}%`,
+              top: `${30 + i * 15}%`,
+            }}
+            animate={{
+              x: [0, 100, 100, 0, 0],
+              y: [0, 0, 50, 50, 0],
+              opacity: [0, 1, 1, 1, 0],
+            }}
+            transition={{
+              duration: 4,
+              repeat: Infinity,
+              delay: i * 1,
+              ease: "linear",
+            }}
+          />
+        ))}
     </div>
   );
-}
+});
 
 interface RetroTerminalProps {
   isOn: boolean;

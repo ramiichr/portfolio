@@ -4,6 +4,8 @@ import { motion, useMotionValue, useTransform, useSpring } from "framer-motion";
 import { useState, useCallback } from "react";
 import type { SkillOrbProps } from "@/types/skills";
 import { springConfigs, staggerDelay } from "@/constants/animations";
+import { useReducedMotion } from "@/hooks/useReducedMotion";
+import { useIsMobile } from "@/hooks/useMediaQuery";
 
 export function SkillOrb({
   name,
@@ -13,25 +15,38 @@ export function SkillOrb({
   index,
 }: SkillOrbProps) {
   const [isHovered, setIsHovered] = useState(false);
+  const reducedMotion = useReducedMotion();
+  const isMobile = useIsMobile();
 
+  // Reduce stagger delay for mobile and reduced motion
+  const effectiveStagger = reducedMotion || isMobile ? 0.01 : staggerDelay;
+
+  // Disable 3D effect and hover animation for mobile/reduced motion
   const x = useMotionValue(0);
   const y = useMotionValue(0);
-
-  const rotateX = useTransform(y, [-50, 50], [8, -8]);
-  const rotateY = useTransform(x, [-50, 50], [-8, 8]);
-
+  const rotateX = useTransform(
+    y,
+    [-50, 50],
+    [isMobile || reducedMotion ? 0 : 8, isMobile || reducedMotion ? 0 : -8]
+  );
+  const rotateY = useTransform(
+    x,
+    [-50, 50],
+    [isMobile || reducedMotion ? 0 : -8, isMobile || reducedMotion ? 0 : 8]
+  );
   const springRotateX = useSpring(rotateX, springConfigs.smooth);
   const springRotateY = useSpring(rotateY, springConfigs.smooth);
 
   const handleMouseMove = useCallback(
     (e: React.MouseEvent<HTMLDivElement>) => {
+      if (isMobile || reducedMotion) return;
       const rect = e.currentTarget.getBoundingClientRect();
       const centerX = rect.left + rect.width / 2;
       const centerY = rect.top + rect.height / 2;
       x.set(e.clientX - centerX);
       y.set(e.clientY - centerY);
     },
-    [x, y]
+    [x, y, isMobile, reducedMotion]
   );
 
   const handleMouseLeave = useCallback(() => {
@@ -41,8 +56,9 @@ export function SkillOrb({
   }, [x, y]);
 
   const handleMouseEnter = useCallback(() => {
+    if (isMobile || reducedMotion) return;
     setIsHovered(true);
-  }, []);
+  }, [isMobile, reducedMotion]);
 
   return (
     <motion.div
@@ -50,7 +66,7 @@ export function SkillOrb({
       whileInView={{ opacity: 1, scale: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
       transition={{
-        delay: index * staggerDelay,
+        delay: index * effectiveStagger,
         type: "spring",
         ...springConfigs.gentle,
       }}
@@ -60,19 +76,21 @@ export function SkillOrb({
       onMouseLeave={handleMouseLeave}
       className="group relative perspective-1000"
     >
-      {/* Outer glow ring */}
-      <motion.div
-        animate={{
-          scale: isHovered ? 1.15 : 1,
-          opacity: isHovered ? 0.5 : 0,
-        }}
-        transition={{ type: "spring", ...springConfigs.snappy }}
-        className={`absolute inset-0 bg-gradient-to-r ${color} rounded-2xl blur-xl`}
-      />
+      {/* Outer glow ring - disabled for mobile/reduced motion */}
+      {!isMobile && !reducedMotion && (
+        <motion.div
+          animate={{
+            scale: isHovered ? 1.15 : 1,
+            opacity: isHovered ? 0.5 : 0,
+          }}
+          transition={{ type: "spring", ...springConfigs.snappy }}
+          className={`absolute inset-0 bg-gradient-to-r ${color} rounded-2xl blur-xl`}
+        />
+      )}
 
       {/* Main card */}
       <motion.div
-        whileHover={{ scale: 1.05 }}
+        whileHover={!isMobile && !reducedMotion ? { scale: 1.05 } : undefined}
         transition={{ type: "spring", ...springConfigs.bouncy }}
         className={`
           relative flex flex-col items-center justify-center p-6 rounded-sm cursor-pointer
@@ -80,7 +98,7 @@ export function SkillOrb({
           border border-gray-300 dark:border-gray-700/50
           shadow-sm overflow-hidden transition-all duration-500 ease-out
           ${
-            isHovered
+            isHovered && !isMobile && !reducedMotion
               ? `${shadowColor} border-cyan-500/50`
               : "shadow-gray-200/50 dark:shadow-gray-900/50"
           }
@@ -96,8 +114,8 @@ export function SkillOrb({
           }}
         />
 
-        {/* Scan line effect on hover */}
-        {isHovered && (
+        {/* Scan line effect on hover - disabled for mobile/reduced motion */}
+        {isHovered && !isMobile && !reducedMotion && (
           <motion.div
             animate={{ y: ["-100%", "200%"] }}
             transition={{ duration: 1, repeat: Infinity }}
@@ -108,8 +126,8 @@ export function SkillOrb({
         {/* Icon container */}
         <motion.div
           animate={{
-            rotateY: isHovered ? 360 : 0,
-            scale: isHovered ? 1.08 : 1,
+            rotateY: isHovered && !isMobile && !reducedMotion ? 360 : 0,
+            scale: isHovered && !isMobile && !reducedMotion ? 1.08 : 1,
           }}
           transition={{
             rotateY: { duration: 0.8, ease: [0.4, 0, 0.2, 1] },
@@ -129,12 +147,14 @@ export function SkillOrb({
           {name}
         </span>
 
-        {/* Terminal-style underline */}
-        <motion.div
-          animate={{ width: isHovered ? "70%" : "0%" }}
-          transition={{ type: "spring", ...springConfigs.snappy }}
-          className="h-0.5 mt-2 rounded-sm bg-cyan-600 dark:bg-cyan-400"
-        />
+        {/* Terminal-style underline - disabled for mobile/reduced motion */}
+        {!isMobile && !reducedMotion && (
+          <motion.div
+            animate={{ width: isHovered ? "70%" : "0%" }}
+            transition={{ type: "spring", ...springConfigs.snappy }}
+            className="h-0.5 mt-2 rounded-sm bg-cyan-600 dark:bg-cyan-400"
+          />
+        )}
       </motion.div>
     </motion.div>
   );
