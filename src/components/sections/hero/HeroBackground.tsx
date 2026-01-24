@@ -52,9 +52,9 @@ const Particle = memo(function Particle({
 interface AnimatedOrbProps {
   className: string;
   animation: {
-    scale: number[];
-    x: number[];
-    y: number[];
+    scale: readonly number[];
+    x: readonly number[];
+    y: readonly number[];
   };
   duration: number;
   reducedMotion: boolean;
@@ -73,7 +73,11 @@ const AnimatedOrb = memo(function AnimatedOrb({
 
   return (
     <motion.div
-      animate={animation}
+      animate={{
+        scale: [...animation.scale],
+        x: [...animation.x],
+        y: [...animation.y],
+      }}
       transition={{ duration, repeat: Infinity, ease: "easeInOut" }}
       className={`${className} will-change-transform`}
     />
