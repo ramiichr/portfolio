@@ -8,7 +8,6 @@ import { Footer } from "@/components/layout/Footer";
 import { UmamiAnalytics } from "@/components/analytics";
 import "../globals.css";
 
-
 // const inter = Inter({
 //   subsets: ["latin"],
 //   variable: "--font-inter",
@@ -62,10 +61,7 @@ export default async function LocaleLayout({
   const messages = await getMessages();
 
   return (
-    <html
-      lang={locale}
-      suppressHydrationWarning
-    >
+    <html lang={locale} suppressHydrationWarning>
       <head>
         <UmamiAnalytics />
       </head>

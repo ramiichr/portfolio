@@ -29,7 +29,10 @@
   h5,
   h6,
   .font-display {
-    font-family: system-ui, -apple-system, sans-serif !important;
+    font-family:
+      system-ui,
+      -apple-system,
+      sans-serif !important;
     font-style: normal !important;
   }
 
@@ -89,14 +92,16 @@
   /* Neumorphism light */
   .neu-light {
     @apply bg-gray-100;
-    box-shadow: 8px 8px 16px rgba(0, 0, 0, 0.1),
+    box-shadow:
+      8px 8px 16px rgba(0, 0, 0, 0.1),
       -8px -8px 16px rgba(255, 255, 255, 0.8);
   }
 
   /* Neumorphism dark */
   .dark .neu-dark {
     @apply bg-gray-800;
-    box-shadow: 8px 8px 16px rgba(0, 0, 0, 0.4),
+    box-shadow:
+      8px 8px 16px rgba(0, 0, 0, 0.4),
       -8px -8px 16px rgba(255, 255, 255, 0.05);
   }
 
